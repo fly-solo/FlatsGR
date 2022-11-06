@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/static/stylesheet/style.css" type="text/css" />
+</head>
+<body>
+    <!-- Основной блок сайта -->
+    <div id="basic">
+<!--шапка сайта-->
+		 <div id="head-site">
+			<a href="#"><img src="/static/images/{{imgs[0]}}" width="200" alt="{{title}}" title="{{title}}" /></a>
+		  </div>
+		  <!-- Верхнее меню сайта -->
+        <div id="menu-top">
+        <div class="bg-1">
+            <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">Flats</a></li>
+            <li><a href="#">About US</a></li>
+            </ul>
+        </div>
+        <div class="bg-2"></div>
+		
+		<div class="block-pod-menu"></div>
+       </div>
+	   <div class="div1">
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="City">
+		</div>
+	<div class="div1">
+       <a><input type="checkbox" id="cbBNK1" name="a" value="1" onchange="myFunction()" checked> 1</a>
+    </div>
+    <div class="div1">
+       <a><input type="checkbox" id="cbBNK2" name="a" value="2" onchange="myFunction()" checked> 2</a>
+    </div>
+	<div class="div1">
+       <a><input type="checkbox" id="cbBNK3" name="a" value="3" onchange="myFunction()" checked> 3</a>
+    </div>
+	
+	
+	<table id = "myTable" border="1">
+				<tr class="header">
+					<th onclick="sortTable(0)">id</th>
+					<th onclick="sortTable(1)">Posted On</th>
+					<th onclick="sortTable(2)">Rent</th>
+					<th onclick="sortTable(3)">Size</th>
+					<th onclick="sortTable(4)">City</th>
+					<th onclick="sortTable(5)">Furnishing Status</th>
+					<th onclick="sortTable(6)">Tenant Preferred</th>
+					<th onclick="sortTable(7)">Point of contact</th>
+					<th onclick="sortTable(8)">Sourse file</th>
+				</tr>
+				{% for row in processed_files %}
+					<tr>
+						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td>
+					</tr>
+				{% endfor %}
+	</table>
+	<script>
+	function sortTable(n) {
+	  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	  table = document.getElementById("myTable");
+	  switching = true;
+	  // Set the sorting direction to ascending:
+	  dir = "asc";
+	  /* Сделайте цикл, который будет продолжаться до тех пор, пока
+	  никакого переключения не было сделано: */
+	  while (switching) {
+		// Начните с того, что скажите: переключение не выполняется:
+		switching = false;
+		rows = table.rows;
+		/* Цикл через все строки таблицы (за исключением
+		во-первых, который содержит заголовки таблиц): */
+		for (i = 1; i < (rows.length - 1); i++) {
+		  // Начните с того, что не должно быть никакого переключения:
+		  shouldSwitch = false;
+		  /* Получите два элемента, которые вы хотите сравнить,
+		  один из текущей строки и один из следующей: */
+		  x = rows[i].getElementsByTagName("TD")[n];
+		  y = rows[i + 1].getElementsByTagName("TD")[n];
+		  /* Проверьте, должны ли две строки поменяться местами,
+		  основанный на направлении, asc или desc: */
+		  if (dir == "asc") {
+			if (n == 1 || n == 2 || n == 4) {
+				if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+				  // Если это так, отметьте как переключатель и разорвать цикл:
+				  shouldSwitch = true;
+				  break;
+				}
+			}
+			else{
+				if (Number(x.innerHTML) > Number(y.innerHTML)) {
+				  shouldSwitch = true;
+				  break;
+				}
+			}
+		  } else if (dir == "desc") {
+			if (n == 1 || n == 2 || n == 4) {
+				if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+				  // Если это так, отметьте как переключатель и разорвать цикл:
+				  shouldSwitch = true;
+				  break;
+				}
+			}
+			else{
+				if (Number(x.innerHTML) < Number(y.innerHTML)) {
+				  shouldSwitch = true;
+				  break;
+				}
+			}
+		  }
+		}
+		if (shouldSwitch) {
+		  /* Если переключатель был отмечен, сделайте переключатель
+		  и отметьте, что переключатель был сделан: */
+		  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		  switching = true;
+		  // Каждый раз, когда выполняется переключение, увеличьте это число на 1:
+		  switchcount ++;
+		} else {
+		  /* Если переключение не было сделано и направление "asc",
+		  установите направление на "desc" и снова запустите цикл while. */
+		  if (switchcount == 0 && dir == "asc") {
+			dir = "desc";
+			switching = true;
+		  }
+		}
+	  }
+	}
+	</script>
+	
+	
+	<script>
+	function myFunction() {
+	  // Объявить переменные
+	  var input, filter, table, tr, td, ts, i, txtValue, BHKFilter, inputBHK1, inputBHK2,inputBHK3, BHKValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  inputBHK1 = document.getElementById("cbBHK1").checked;
+	  inputBHK2 = document.getElementById("cbBHK2").checked;
+	  inputBHK3 = document.getElementById("cbBHK3").checked;
+	  if (inputBHK1 == inputBHK2==inputBHK3){
+		BHKFilter = "";
+	  }
+	  else{
+		if(inputBHK1 == true){
+			BHKFilter = "1";
+		}
+		if(inputBHK2==true){
+			BHKFilter ="2";
+		}
+		else{
+			BHKFilter = "3";
+		}
+	  }
+	  // Перебирайте все строки таблицы и скрывайте тех, кто не соответствует поисковому запросу
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[1];
+		ts = tr[i].getElementsByTagName("td")[2];
+			if (td) {
+			  txtValue = td.textContent || td.innerText;
+			  BHKValue = ts.textContent || ts.innerText;
+			  if (txtValue.toUpperCase().indexOf(filter) > -1 && (BHKValue == BHKFilter || BHKFilter == "")) {
+				tr[i].style.display = "";
+			  } else {
+				tr[i].style.display = "none";
+			  }
+			  
+			}
+		}
+		
+	}
+	</script>	
+</body>
+</html>
