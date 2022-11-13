@@ -13,7 +13,7 @@ from datetime import datetime
 # Вывод списка обработанных файлов с сортировкой по дате
 def select_all_from_source_files(connector: StoreConnector):
     connector.start_transaction()  # начинаем выполнение запросов
-    query = f'SELECT * FROM flats_for_sale'
+    query = f'SELECT id, Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City, Furnishing, Point_of_Contact FROM flats_for_sale'
     result = connector.execute(query).fetchall()
     connector.end_transaction()  # завершаем выполнение запросов
     return result

@@ -51,13 +51,11 @@
 					<th onclick="sortTable(6)">Area locality</th>
 					<th onclick="sortTable(7)">City</th>
 					<th onclick="sortTable(8)">Furnishing Status</th>
-					<th onclick="sortTable(9)">Tenant Preferred</th>
-					<th onclick="sortTable(10)">Bathroom</th>
-					<th onclick="sortTable(11)">Point of Contact</th>
+					<th onclick="sortTable(9)">Point of Contact</th>
 				</tr>
 				{% for row in processed_files %}
 					<tr>
-						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td><td>{{row[10]}}</td><td>{{row[11]}}</td>
+						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td>
 					</tr>
 				{% endfor %}
 	</table>

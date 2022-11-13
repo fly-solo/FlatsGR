@@ -124,12 +124,12 @@ li.none-bg {background:none!important;}
   border-collapse: collapse; /* Свернуть границы */
   width: 100%; /* Полная ширина */
   border: 1px solid #ddd; /* Добавить серую границу */
-  font-size: 18px; /* Увеличить размер шрифта */
+  font-size: 14px; /* Увеличить размер шрифта */
 }
 
 #myTable th, #myTable td {
   text-align: left; /* Выравнивание текста по левому краю */
-  padding: 12px; /* Добавить отступ */
+  padding: 8px; /* Добавить отступ */
 }
 
 #myTable tr {
@@ -144,10 +144,10 @@ li.none-bg {background:none!important;}
 
 .div1
 {
-	height: 50px;
+	height: 40px;
 	/*display: inline-block;*/
-	float: left;
-	width: 25%;
+	float: right;
+	width: 15%;
 }
 
 .btn {
