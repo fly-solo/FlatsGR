@@ -31,3 +31,9 @@ def get_source_files_list():
     # Завершаем работу с БД
     db_connector.close()
     return result
+def get_sort_rent_from_source_files():
+    db_connector = SQLStoreConnectorFactory().get_connector(DATABASE)  # получаем объект соединения
+    result = sort_rent_from_source_files(db_connector)  # получаем список всех обработанных файлов
+    # Завершаем работу с БД
+    db_connector.close()
+    return result
