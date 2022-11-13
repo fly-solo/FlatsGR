@@ -16,11 +16,11 @@ navmenu = [
 },
 {
 'name': 'Flats',
-'addr': '/flats'
+'addr': '/Flats'
 },
 {
 'name': 'About Us',
-'addr': '/aboutus'
+'addr': '/AboutUs'
 },
 
 ]

@@ -10,7 +10,7 @@ switch(main_id) {
 	case 'HOME':
 		menuelem = navlist[0];
 		break;
-	case 'Fluts':
+	case 'Flats':
 		menuelem = navlist[1];
 		break;
 	case 'About Us':

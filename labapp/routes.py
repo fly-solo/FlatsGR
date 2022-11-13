@@ -22,13 +22,17 @@ def HOME():
     return render_template('HOME.html', title='FlatsGR', navmenu=controller.navmenu,
                            imgs=imgs, processed_files=processed_files)
 
-
+@app.route('/Flats')
+def Flats():
+    imgs = ['logo.png', 'кв1.jpg', 'кв2.jpg']
+    processed_files = controller.get_source_files_list()
+    return render_template('Flats.html', title='FlatsGR', imgs=imgs, navmenu=controller.navmenu, processed_files=processed_files)
 # Обработка запроса к странице contact.html
+
 @app.route('/AboutUS')
 def AboutUS():
     imgs = ['1.jpg', '2.jpg', '3.jpg', '4.jpg']
     return render_template('AboutUS.html', title='О нас', pname='About us', navmenu=controller.navmenu, imgs=imgs)
-
 
 # Пример обработки POST-запроса для демонстрации подхода AJAX
 @app.route('/api/contactrequest', methods=['POST'])
@@ -48,20 +52,9 @@ def post_contact():
 Реализация response-методов, возвращающих клиенту стандартные коды протокола HTTP
 """
 
-
-@app.route('/Flats')
-def Flats():
-    # Пример вызова метода с выборкой данных из БД и вставка полученных данных в html-шаблон
-    processed_files = controller.get_source_files_list()
-    # "рендеринг" (т.е. вставка динамически изменяемых данных) в index.html и возвращение готовой страницы
-    return render_template('Flats.html', title='Flats', pname='Flats', navmenu=controller.navmenu,
-                           processed_files=processed_files)
-
-
 @app.route('/notfound')
 def not_found_html():
     return render_template('404.html', title='404', err={'error': 'Not found', 'code': 404})
-
 
 # Формирование json-ответа. Если в метод передается только data (dict-объект), то по-умолчанию устанавливаем код возврата code = 200
 # В Flask есть встроенный метод jsonify(dict), который также реализует данный метод (см. пример метода not_found())
