@@ -17,9 +17,9 @@
         <div id="menu-top">
         <div class="bg-1">
             <ul>
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">Flats</a></li>
-            <li><a href="#">About US</a></li>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/Flats">Flats</a></li>
+            <li><a href="/AboutUS">About US</a></li>
             </ul>
         </div>
         <div class="bg-2"></div>
@@ -38,22 +38,26 @@
 	<div class="div1">
        <a><input type="checkbox" id="cbBNK3" name="a" value="3" onchange="myFunction()" checked> 3</a>
     </div>
-		
+	
+	
 	<table id = "myTable" border="1">
 				<tr class="header">
 					<th onclick="sortTable(0)">id</th>
 					<th onclick="sortTable(1)">Posted On</th>
-					<th onclick="sortTable(2)">Rent</th>
-					<th onclick="sortTable(3)">Size</th>
-					<th onclick="sortTable(4)">City</th>
-					<th onclick="sortTable(5)">Furnishing Status</th>
-					<th onclick="sortTable(6)">Tenant Preferred</th>
-					<th onclick="sortTable(7)">Point of contact</th>
-					<th onclick="sortTable(8)">Sourse file</th>
+					<th onclick="sortTable(2)">BHK</th>
+					<th onclick="sortTable(3)">Rent</th>
+					<th onclick="sortTable(4)">Size</th>
+					<th onclick="sortTable(5)">Floor</th>
+					<th onclick="sortTable(6)">Area locality</th>
+					<th onclick="sortTable(7)">City</th>
+					<th onclick="sortTable(8)">Furnishing Status</th>
+					<th onclick="sortTable(9)">Tenant Preferred</th>
+					<th onclick="sortTable(10)">Bathroom</th>
+					<th onclick="sortTable(11)">Point of Contact</th>
 				</tr>
 				{% for row in processed_files %}
 					<tr>
-						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td>
+						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td><td>{{row[10]}}</td><td>{{row[11]}}</td>
 					</tr>
 				{% endfor %}
 	</table>
@@ -173,10 +177,6 @@
 		}
 		
 	}
-	</script>
-	</div>
-	<script type="text/javascript" src="/static/javascripts/topmenu.js"></script>
-	<script type="text/javascript" src="/static/javascripts/jqfunc.js"></script>
-
+	</script>	
 </body>
 </html>
