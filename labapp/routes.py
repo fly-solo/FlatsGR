@@ -19,16 +19,14 @@ def HOME():
     # Пример вызова метода с выборкой данных из БД и вставка полученных данных в html-шаблон
     processed_files = controller.get_source_files_list()
     # "рендеринг" (т.е. вставка динамически изменяемых данных) в index.html и возвращение готовой страницы
-    return render_template('HOME.html', title='FlatsGR', navmenu=controller.navmenu,
-                           imgs=imgs, processed_files=processed_files)
+    return render_template('HOME.html', title='FlatsGR', navmenu=controller.navmenu, imgs=imgs, processed_files=processed_files)
 
 @app.route('/Flats')
 def Flats():
     imgs = ['logo.png', 'кв1.jpg', 'кв2.jpg']
     processed_files = controller.get_source_files_list()
     sorted_rent_file = controller.get_sort_rent_from_source_files()
-    return render_template('Flats.html', title='FlatsGR', imgs=imgs, navmenu=controller.navmenu,
-                           processed_files=processed_files, sorted_rent_file=sorted_rent_file)
+    return render_template('Flats.html', title='FlatsGR', imgs=imgs, navmenu=controller.navmenu, processed_files=processed_files, sorted_rent_file=sorted_rent_file)
 # Обработка запроса к странице contact.html
 
 @app.route('/AboutUS')
