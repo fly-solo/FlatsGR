@@ -25,8 +25,8 @@ def HOME():
 def Flats():
     imgs = ['logo.png', 'кв1.jpg', 'кв2.jpg']
     processed_files = controller.get_source_files_list()
-    sorted_rent_file = controller.get_sort_rent_from_source_files()
-    return render_template('Flats.html', title='FlatsGR', imgs=imgs, navmenu=controller.navmenu, processed_files=processed_files, sorted_rent_file=sorted_rent_file)
+    #sorted_rent_file = controller.get_sort_rent_from_source_files()
+    return render_template('Flats.html', title='FlatsGR', imgs=imgs, navmenu=controller.navmenu, processed_files=processed_files)
 # Обработка запроса к странице contact.html
 
 @app.route('/AboutUS')
