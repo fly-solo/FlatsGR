@@ -5,6 +5,14 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/static/stylesheet/style.css" type="text/css" />
   <script type="text/javascript" src="/static/javascripts/jquery-3.6.0.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/DataTables-Jquery-Table-Plugin/media/css/jquery.dataTables.css"></link>
+
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
 </head>
 <body>
     <!-- Основной блок сайта -->
@@ -26,155 +34,120 @@
 		
 		<div class="block-pod-menu"></div>
        </div>
-	   <div class="div1">
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="City">
-		</div>
-	<div class="div1">
-       <a><input type="checkbox" id="cbBNK1" name="a" value="1" onchange="myFunction()" checked> 1</a>
-    </div>
-    <div class="div1">
-       <a><input type="checkbox" id="cbBNK2" name="a" value="2" onchange="myFunction()" checked> 2</a>
-    </div>
-	<div class="div1">
-       <a><input type="checkbox" id="cbBNK3" name="a" value="3" onchange="myFunction()" checked> 3</a>
-    </div>
-	
-	
-	<table id = "myTable" border="1">
-				<tr class="header">
-					<th onclick="sortTable(0)">id</th>
-					<th onclick="sortTable(1)">Posted On</th>
-					<th onclick="sortTable(2)">BHK</th>
-					<th onclick="sortTable(3)">Rent</th>
-					<th onclick="sortTable(4)">Size</th>
-					<th onclick="sortTable(5)">Floor</th>
-					<th onclick="sortTable(6)">Area locality</th>
-					<th onclick="sortTable(7)">City</th>
-					<th onclick="sortTable(8)">Furnishing Status</th>
-					<th onclick="sortTable(9)">Point of Contact</th>
+		 <br /><br />
+                <div align="right" >
+                     <input type="text" name="search" id="search" class="search" />
+                </div>
+                <br /><br />
+        <style>
+        .clickable{
+            cursor:pointer;
+             background:#669e85;
+               }
+        </style>
+
+
+
+
+
+
+        <tr id="range">
+        <td>Minimum price:</td>
+        <td><input type="text" id="min" name="min"></td>
+        </tr>
+        <tr>
+        <td>Maximum price:</td>
+        <td><input type="text" id="max" name="max"></td>
+         </tr>
+
+
+	<table id = "employee_table" border="1" class="table table-bordered">
+
+				<tr class="header" >
+					<th class="num">id</th>
+					<th class="data">Posted On</th>
+					<th class="num">BHK</th>
+					<th class="num">Rent</th>
+					<th class="num">Size</th>
+					<th class="num">Floor</th>
+					<th class="text">Area locality</th>
+					<th class="text">City</th>
+					<th class="text">Furnishing Status</th>
+					<th class="text">Point of Contact</th>
 				</tr>
 				{% for row in processed_files %}
-					<tr>
+		       <tbody id="tbody">
+
+					<tr >
+
 						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td>
 					</tr>
 				{% endfor %}
+			   </tbody>
 	</table>
-	<script>
-	function sortTable(n) {
-	  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-	  table = document.getElementById("myTable");
-	  switching = true;
-	  // Set the sorting direction to ascending:
-	  dir = "asc";
-	  /* Сделайте цикл, который будет продолжаться до тех пор, пока
-	  никакого переключения не было сделано: */
-	  while (switching) {
-		// Начните с того, что скажите: переключение не выполняется:
-		switching = false;
-		rows = table.rows;
-		/* Цикл через все строки таблицы (за исключением
-		во-первых, который содержит заголовки таблиц): */
-		for (i = 1; i < (rows.length - 1); i++) {
-		  // Начните с того, что не должно быть никакого переключения:
-		  shouldSwitch = false;
-		  /* Получите два элемента, которые вы хотите сравнить,
-		  один из текущей строки и один из следующей: */
-		  x = rows[i].getElementsByTagName("TD")[n];
-		  y = rows[i + 1].getElementsByTagName("TD")[n];
-		  /* Проверьте, должны ли две строки поменяться местами,
-		  основанный на направлении, asc или desc: */
-		  if (dir == "asc") {
-			if (n == 1 || n == 2 || n == 4) {
-				if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-				  // Если это так, отметьте как переключатель и разорвать цикл:
-				  shouldSwitch = true;
-				  break;
-				}
-			}
-			else{
-				if (Number(x.innerHTML) > Number(y.innerHTML)) {
-				  shouldSwitch = true;
-				  break;
-				}
-			}
-		  } else if (dir == "desc") {
-			if (n == 1 || n == 2 || n == 4) {
-				if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-				  // Если это так, отметьте как переключатель и разорвать цикл:
-				  shouldSwitch = true;
-				  break;
-				}
-			}
-			else{
-				if (Number(x.innerHTML) < Number(y.innerHTML)) {
-				  shouldSwitch = true;
-				  break;
-				}
-			}
-		  }
-		}
-		if (shouldSwitch) {
-		  /* Если переключатель был отмечен, сделайте переключатель
-		  и отметьте, что переключатель был сделан: */
-		  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-		  switching = true;
-		  // Каждый раз, когда выполняется переключение, увеличьте это число на 1:
-		  switchcount ++;
-		} else {
-		  /* Если переключение не было сделано и направление "asc",
-		  установите направление на "desc" и снова запустите цикл while. */
-		  if (switchcount == 0 && dir == "asc") {
-			dir = "desc";
-			switching = true;
-		  }
-		}
-	  }
-	}
-	</script>
+<script>
+    //   Скрипт сортировки по возрастанию при нажатии на заголовок
+        type="text/javascript">
+$(document).ready(function(){
+    $("th").each(function(column){
+        $(this).hover(function(){
+            $(this).data("type",$(this).attr("class"));
+            $(this).addClass("clickable");
+
+        },function(){
+            $(this).removeClass("clickable");
+        });
+        $(this).click(function(){
+            var type=$(this).data("type");
+            var records = $("#employee_table").find("#tbody > tr");
+            records.sort(function(a,b){
+                var value1=$(a).children("td").eq(column).text();
+                var value2=$(b).children("td").eq(column).text();
+                if(type == "num" )
+                {
+                    value1 *=1;
+                    value2*=1;
+                }
+                return (value1 < value2) ? -1 : (value1 > value2 ? 1 : 0)
+            });
+            $.each(records,function(index,row){
+                $("#tbody").append(row);
+            });
+        });
+    });
+});
+</script>
+	 <script>
+	 //Скрипт для фильтрации = поисковик по всей таблице
+      $(document).ready(function(){
+           $('#search').keyup(function(){
+                search_table($(this).val());
+           });
+           function search_table(value){
+                $('#tbody tr  ').each(function(){
+                     var found = 'false';
+                     $(this).each(function(){
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >1)
+                          {
+                               found = 'true';
+                          }
+                     });
+                     if(found == 'true')
+                     {
+                          $(this).show();
+                     }
+                     else
+                     {
+                          $(this).hide();
+                     }
+                });
+           }
+      });
+ </script>
+
 	
-	
-	<script>
-	function myFunction() {
-	  // Объявить переменные
-	  var input, filter, table, tr, td, ts, i, txtValue, BHKFilter, inputBHK1, inputBHK2,inputBHK3, BHKValue;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  table = document.getElementById("myTable");
-	  tr = table.getElementsByTagName("tr");
-	  inputBHK1 = document.getElementById("cbBHK1").checked;
-	  inputBHK2 = document.getElementById("cbBHK2").checked;
-	  inputBHK3 = document.getElementById("cbBHK3").checked;
-	  if (inputBHK1 == inputBHK2==inputBHK3){
-		BHKFilter = "";
-	  }
-	  else{
-		if(inputBHK1 == true){
-			BHKFilter = "1";
-		}
-		if(inputBHK2==true){
-			BHKFilter ="2";
-		}
-		else{
-			BHKFilter = "3";
-		}
-	  }
-	  // Перебирайте все строки таблицы и скрывайте тех, кто не соответствует поисковому запросу
-	  for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[1];
-		ts = tr[i].getElementsByTagName("td")[2];
-			if (td) {
-			  txtValue = td.textContent || td.innerText;
-			  BHKValue = ts.textContent || ts.innerText;
-			  if (txtValue.toUpperCase().indexOf(filter) > -1 && (BHKValue == BHKFilter || BHKFilter == "")) {
-				tr[i].style.display = "";
-			  } else {
-				tr[i].style.display = "none";
-			  }
-			  
-			}
-		}
-		
-	}
-	</script>	
+
+
+	</div>
 </body>
 </html>
