@@ -15,7 +15,7 @@
 
 </head>
 <body>
-    <!-- Основной блок сайта -->
+   <!-- Основной блок сайта -->
     <div id="basic">
 <!--шапка сайта-->
 		 <div id="head-site">
@@ -31,7 +31,7 @@
             </ul>
         </div>
         <div class="bg-2"></div>
-		
+
 		<div class="block-pod-menu"></div>
        </div>
 		 <br /><br />
@@ -46,6 +46,15 @@
                }
         </style>
 
+    <div class="div1">
+	    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Выберите ВНК">
+	</div>
+    <div class="div1">
+       <a><input type="checkbox" id="cb1" name="a" value="1" onchange="myFunction()" checked> 1</a>
+    </div>
+    <div class="div1">
+       <a><input type="checkbox" id="cb2" name="a" value="2" onchange="myFunction()" checked> 2</a>
+    </div>
 
 
 
@@ -66,7 +75,11 @@
 				<tr class="header" >
 					<th class="num">id</th>
 					<th class="data">Posted On</th>
-					<th class="num">BHK</th>
+					<th class="num" col-index="2">BHK
+                        <select class="table-filter" onchange="filter_rows()">
+                            <option value="all"></option>
+                        </select>
+                    </th>
 					<th class="num">Rent</th>
 					<th class="num">Size</th>
 					<th class="num">Floor</th>
@@ -85,6 +98,48 @@
 				{% endfor %}
 			   </tbody>
 	</table>
+
+        	<script>
+	function myFunction() {
+	//Чекбоксы на ВНК 1  2
+	  // Объявить переменные
+	  var input, filter, table, tr, td, ts, i, txtValue, BHKFilter, input1, input2, BHKValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("employee_table");
+	  tr = table.getElementsByTagName("tr");
+	  input1 = document.getElementById("cb1").checked;
+	  input2 = document.getElementById("cb2").checked;
+
+	  if (input1 == input2){
+		BHKFilter = "";
+	  }
+	  else{
+		if(input1 == true){
+			BHKFilter = "1";
+		}
+		else{
+			BHKFilter ="2";
+		}
+	  }
+	  // Перебирайте все строки таблицы и скрывайте тех, кто не соответствует поисковому запросу
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[1];
+		ts = tr[i].getElementsByTagName("td")[2];
+			if (td) {
+			  txtValue = td.textContent || td.innerText;
+			  BHKValue = ts.textContent || ts.innerText;
+			  if (txtValue.toUpperCase().indexOf(filter) > -1 && (BHKValue == BHKFilter || BHKFilter == "")) {
+				tr[i].style.display = "";
+			  } else {
+				tr[i].style.display = "none";
+			  }
+
+			}
+		}
+
+	}
+	</script>
 <script>
     //   Скрипт сортировки по возрастанию при нажатии на заголовок
         type="text/javascript">
@@ -145,6 +200,38 @@ $(document).ready(function(){
       });
  </script>
 
+<script>
+//Range Rent херово работает
+$('#employee_table').dataTable({
+       searching: true,
+       "paging":false,info:false
+});
+    /* Custom filtering function which will search data in column four between two values */
+$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+    var min = parseInt($('#min').val());
+    var max = parseInt($('#max').val());
+    var rent = parseFloat(data[3]) || 0; // use data for the age column
+
+    if (
+        (isNaN(min) && isNaN(max)) ||
+        (isNaN(min) && rent <= max) ||
+        (min <= rent && isNaN(max)) ||
+        (min <= rent && rent <= max)
+    ) {
+        return true;
+    }
+    return false;
+});
+
+$(document).ready(function () {
+    var table = $('#employee_table' ).DataTable();
+
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#min, #max').keyup(function () {
+        table.draw();
+    });
+});
+</script>
 	
 
 
