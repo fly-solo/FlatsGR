@@ -47,6 +47,12 @@ class DataProcessor(ABC):
     def print_result(self):
         pass
 
+    # Проверить работоспособность очистки данных
+    def clear_data(self, df) -> pandas.DataFrame:
+        feature_cols = list(df.columns)
+        for col_name in feature_cols:
+            df.drop(df.loc[df[col_name].isna(), [col_name]].index, inplace=True)
+        return df
 
 # Реализация класса-обработчика csv-файлов
 class CsvDataProcessor(DataProcessor):

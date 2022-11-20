@@ -35,11 +35,14 @@ def insert_processed_data_in_DB():
     proc = init_processor(DATASOURCE)
     if proc is not None:
         run_processor(proc)
-    if proc.result is not None:
-        db_connector = SQLStoreConnectorFactory().get_connector(DATABASE)  # получаем объект соединения
-        insert_rows_into_flats_for_sale(db_connector, proc.result)
-        # Завершаем работу с БД
-        db_connector.close()
+        if proc.result is not None:
+            db_connector = SQLStoreConnectorFactory().get_connector(DATABASE)  # получаем объект соединения
+            insert_rows_into_flats_for_sale(db_connector, proc.result)
+            # Завершаем работу с БД
+            db_connector.close()
+            os.remove(DATASOURCE)
+    else:
+        pass
 
 # Удаление ВСЕХ таблиц в БД и создание чистых таблиц по заданным моделям
 #def reset_database():
