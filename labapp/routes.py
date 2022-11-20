@@ -31,7 +31,7 @@ def Flats():
 @app.route('/AboutUS')
 def AboutUS():
     imgs = ['1.jpg', '2.jpg', '3.jpg', '4.jpg']
-    return render_template('AboutUS.html', title='О нас', pname='About us', navmenu=controller.navmenu, imgs=imgs)
+    return render_template('AboutUS.html', title='О нас', navmenu=controller.navmenu, imgs=imgs)
 
 # Пример обработки POST-запроса для демонстрации подхода AJAX
 @app.route('/api/contactrequest', methods=['POST'])
