@@ -48,3 +48,10 @@ class TxtDataProcessorFactory(DataProcessorFactory):
         if self.instance.read():
             return self.instance
         return None
+
+class NoneDataProcessorFactory(DataProcessorFactory):
+    def get_processor(self, datasource) -> DataProcessor:
+        self.instance = NoneDataProcessor(datasource)
+        if self.instance.read():
+            return self.instance
+        return None

@@ -99,3 +99,13 @@ class TxtDataProcessor(DataProcessor):
 
     def print_result(self):
         print(f'Running TXT-file processor!\n', self.result)
+class NoneDataProcessor(DataProcessor):
+    # Реализация метода для чтения TXT-файла
+    def read(self):
+        return True
+    def run(self):
+        # self._dataset = pandas.DataFrame(columns=['year', '', 'C'])
+        self.result = pandas.DataFrame(columns=['id', 'Posted_On', 'BHK', 'Rent', 'Size_', 'Floor_', 'Area_Locality', 'City', 'Furnishing', 'Point_of_Contact'])
+    def print_result(self):
+        print(f'Running None-file processor!\n', self.result)
+

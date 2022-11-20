@@ -21,6 +21,8 @@ def init_processor(source: str) -> DataProcessor:
         proc = CsvDataProcessorFactory().get_processor(source)
     elif source.endswith('.txt'):
         proc = TxtDataProcessorFactory().get_processor(source)
+    else:
+        proc = NoneDataProcessorFactory().get_processor(source)
     return proc
 
 # Запуск обработки
