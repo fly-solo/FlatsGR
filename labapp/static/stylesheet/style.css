@@ -113,46 +113,46 @@ li.none-bg {background:none!important;}
   background-image: url('/css/searchicon.png'); /* Добавить значок поиска для ввода */
   background-position: 10px 12px; /* Расположите значок поиска */
   background-repeat: no-repeat; /* Не повторяйте изображение значка */
-  width: 100%; /* Полная ширина */
-  font-size: 16px; /* Увеличить размер шрифта */
-  padding: 12px 20px 12px 40px; /* Добавить немного отступов */
+  width: 15%; /* Полная ширина */
+  font-size: 12px; /* Увеличить размер шрифта */
+  padding: 5px 10px 10px 10px; /* Добавить немного отступов */
   border: 1px solid #ddd; /* Добавить серую границу */
-  margin-bottom: 12px; /* Добавить некоторое пространство под входом */
+  margin-left:0%; /* Добавить некоторое пространство под входом */
+  margin: 0 10px 10px 0;
+
 }
 
-#myTable {
+#employee_table {
   border-collapse: collapse; /* Свернуть границы */
   width: 100%; /* Полная ширина */
   border: 1px solid #ddd; /* Добавить серую границу */
   font-size: 14px; /* Увеличить размер шрифта */
 }
 
-#myTable th, #myTable td {
+#employee_table th, #employee_table td {
   text-align: left; /* Выравнивание текста по левому краю */
   padding: 8px; /* Добавить отступ */
 }
 
-#myTable tr {
+#employee_table tr {
   /* Добавить нижнюю границу для всех строк таблицы */
   border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header, #myTable tr:hover {
+#employee_table tr.header, #employee_table tr:hover {
   /* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
   background-color: #f1f1f1;
 }
 
 .div1
 {
-	height: 40px;
+	height: 20px;
 	/*display: inline-block;*/
-	float: right;
+	float: left;
 	width: 15%;
 }
 
-.btn {
-  cursor: pointer;
-}
+
 
 .apply {
   border-color: #bf2626;

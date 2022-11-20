@@ -17,9 +17,8 @@ from . import controller  # подключаем controller.py
 def HOME():
     imgs = ['logo.png', 'кв1.jpg', 'кв2.jpg']
     # Пример вызова метода с выборкой данных из БД и вставка полученных данных в html-шаблон
-    processed_files = controller.get_source_files_list()
     # "рендеринг" (т.е. вставка динамически изменяемых данных) в index.html и возвращение готовой страницы
-    return render_template('HOME.html', title='FlatsGR', navmenu=controller.navmenu, imgs=imgs, processed_files=processed_files)
+    return render_template('HOME.html', title='FlatsGR', navmenu=controller.navmenu, imgs=imgs)
 
 @app.route('/Flats')
 def Flats():

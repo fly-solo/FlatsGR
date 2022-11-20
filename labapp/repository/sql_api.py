@@ -13,14 +13,23 @@ from datetime import datetime
 # Вывод списка обработанных файлов с сортировкой по дате
 def select_all_from_source_files(connector: StoreConnector):
     connector.start_transaction()  # начинаем выполнение запросов
-    query = f'SELECT id, Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City, Furnishing, Point_of_Contact FROM flats_for_sale ORDER BY Posted_On DESC LIMIT 2000'
+    query = f'SELECT id, Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City, Furnishing, Point_of_Contact FROM flats_for_sale LIMIT 2000'
     result = connector.execute(query).fetchall()
     connector.end_transaction()  # завершаем выполнение запросов
     return result
 
-#def sort_rent_from_source_files(connector: StoreConnector):
-#    connector.start_transaction()  # начинаем выполнение запросов
-#    query = f'SELECT id, Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City, Furnishing, Point_of_Contact FROM flats_for_sale order by Rent'
-#    result = connector.execute(query).fetchall()
-#    connector.end_transaction()  # завершаем выполнение запросов
-#    return result
+# Вставка строк в таблицу flats_for_sale
+def insert_rows_into_flats_for_sale(connector: StoreConnector, df: DataFrame):
+    connector.start_transaction()
+    connector.execute(f'DELETE FROM flats_for_sale;')
+    connector.execute(f'UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=\'flats_for_sale\';')
+
+    row_flats = df.to_dict('records')
+    for row in row_flats:
+        connector.execute(f'INSERT INTO flats_for_sale (Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City,'
+                          f' Furnishing, Tenant_Preferred, Bathroom, Point_of_Contact) VALUES (\'{row["Posted_On"]}\', '
+                          f'\'{row["BHK"]}\', \'{row["Rent"]}\', \'{row["Size_"]}\','
+                          f'\'{row["Floor_"]}\', \'{row["Area_Locality"]}\', \'{row["City"]}\', '
+                          f'\'{"Furnishing"}\', \'{row["Tenant_Preferred"]}\', \'{row["Bathroom"]}\''
+                          f', \'{row["Point_of_Contact"]}\')')
+    connector.end_transaction()

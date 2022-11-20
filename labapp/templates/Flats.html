@@ -4,23 +4,31 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/static/stylesheet/style.css" type="text/css" />
-  <script type="text/javascript" src="/static/javascripts/jquery-3.6.0.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/DataTables-Jquery-Table-Plugin/media/css/jquery.dataTables.css"></link>
+    <!-- ✅ load jQuery ✅ -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
 
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- ✅ load DataTables ✅ -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+      integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
 
 
-</head>
+
 <body>
    <!-- Основной блок сайта -->
     <div id="basic">
 <!--шапка сайта-->
-		 <div id="head-site">
+		<div id="head-site">
 			<a href="#"><img src="/static/images/{{imgs[0]}}" width="200" alt="{{title}}" title="{{title}}" /></a>
-		  </div>
+		</div>
 		  <!-- Верхнее меню сайта -->
         <div id="menu-top">
         <div class="bg-1">
@@ -31,116 +39,119 @@
             </ul>
         </div>
         <div class="bg-2"></div>
-
-		<div class="block-pod-menu"></div>
-       </div>
-		 <br /><br />
-                <div align="right" >
-                     <input type="text" name="search" id="search" class="search" />
-                </div>
-                <br /><br />
+			<div class="block-pod-menu"></div>
+        </div>
+		<br />
+		<br />
+        <div align="right" >
+			<input type="text" name="search" id="search" class="search" placeholder="search" />
+        </div>
+        <br />
+		<br />
         <style>
         .clickable{
             cursor:pointer;
-             background:#669e85;
-               }
+            background:#669e85;
+        }
         </style>
 
-    <div class="div1">
-	    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Выберите ВНК">
-	</div>
-    <div class="div1">
-       <a><input type="checkbox" id="cb1" name="a" value="1" onchange="myFunction()" checked> 1</a>
-    </div>
-    <div class="div1">
-       <a><input type="checkbox" id="cb2" name="a" value="2" onchange="myFunction()" checked> 2</a>
-    </div>
-
-
-
-
+		<div class="myInput">
+			<input type="text" id="myInput"  placeholder="Выберите ВНК:">
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb1" name="a" value="1" onchange="myFunction()" checked> 1</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb2" name="a" value="2" onchange="myFunction()" checked> 2</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb3" name="a" value="3" onchange="myFunction()" checked> 3</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb4" name="a" value="4" onchange="myFunction()" checked> 4</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb5" name="a" value="5" onchange="myFunction()" checked> 5</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb6" name="a" value="6" onchange="myFunction()" checked> 6</a>
+		</div>
 
         <tr id="range">
-        <td>Minimum price:</td>
-        <td><input type="text" id="min" name="min"></td>
+
+        <td > <br /><br />Minimum price:</td>
+        <td><input type="text" id="min" name="min" onkeyup="myFunction()"></td>
         </tr>
         <tr>
         <td>Maximum price:</td>
-        <td><input type="text" id="max" name="max"></td>
-         </tr>
+        <td><input type="text" id="max" name="max" onkeyup="myFunction()" ></td>
+        </tr>
 
-
-	<table id = "employee_table" border="1" class="table table-bordered">
-
-				<tr class="header" >
-					<th class="num">id</th>
-					<th class="data">Posted On</th>
-					<th class="num" col-index="2">BHK
-                        <select class="table-filter" onchange="filter_rows()">
-                            <option value="all"></option>
-                        </select>
-                    </th>
-					<th class="num">Rent</th>
-					<th class="num">Size</th>
-					<th class="num">Floor</th>
-					<th class="text">Area locality</th>
-					<th class="text">City</th>
-					<th class="text">Furnishing Status</th>
-					<th class="text">Point of Contact</th>
+		<table id = "employee_table" border="1" class="table table-bordered">
+			<thead class="header" >
+				<th class="num">id</th>
+				<th class="data">Posted On</th>
+				<th class="num">BHK</th>
+				<th class="num">Rent</th>
+				<th class="num">Size</th>
+				<th class="num">Floor</th>
+				<th class="text">Area locality</th>
+				<th class="text">City</th>
+				<th class="text">Furnishing Status</th>
+				<th class="text">Point of Contact</th>
+			</thead>
+			{% for row in processed_files %}
+            <tbody id="tbody">
+				<tr >
+					<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td>
 				</tr>
-				{% for row in processed_files %}
-		       <tbody id="tbody">
-
-					<tr >
-
-						<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td><td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td>
-					</tr>
 				{% endfor %}
-			   </tbody>
-	</table>
-
-        	<script>
+			</tbody>
+		</table>
+	
+	<script>
 	function myFunction() {
-	//Чекбоксы на ВНК 1  2
-	  // Объявить переменные
-	  var input, filter, table, tr, td, ts, i, txtValue, BHKFilter, input1, input2, BHKValue;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  table = document.getElementById("employee_table");
-	  tr = table.getElementsByTagName("tr");
-	  input1 = document.getElementById("cb1").checked;
-	  input2 = document.getElementById("cb2").checked;
-
-	  if (input1 == input2){
-		BHKFilter = "";
-	  }
-	  else{
-		if(input1 == true){
-			BHKFilter = "1";
+		var input, min, max, table, tr, td, i, txtValue, cbFilter="", td2, BHKValue;
+		//Добавление чекбоксов
+		const checkBoxes = ["cb1", "cb2", "cb3", "cb4", "cb5", "cb6"]
+		for(let i=0; i<checkBoxes.length;i++){
+			input = document.getElementById(checkBoxes[i]);
+			if (input.checked)
+				cbFilter = cbFilter + input.value;
 		}
-		else{
-			BHKFilter ="2";
+		//Добавление min и max
+		input = document.getElementById("min");
+		min = Number(input.value);
+		input = document.getElementById("max");
+		max = Number(input.value);
+		//Проверка min и max
+		if (min == ""){
+			min = 0;
 		}
-	  }
-	  // Перебирайте все строки таблицы и скрывайте тех, кто не соответствует поисковому запросу
-	  for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[1];
-		ts = tr[i].getElementsByTagName("td")[2];
+		if (max == ""){
+			max = Number.POSITIVE_INFINITY;
+		}
+		//Таблица
+		table = document.getElementById("employee_table");
+		tr = table.getElementsByTagName("tr");
+		//Обход таблицы
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[3];
+			td2 = tr[i].getElementsByTagName("td")[2];
 			if (td) {
-			  txtValue = td.textContent || td.innerText;
-			  BHKValue = ts.textContent || ts.innerText;
-			  if (txtValue.toUpperCase().indexOf(filter) > -1 && (BHKValue == BHKFilter || BHKFilter == "")) {
-				tr[i].style.display = "";
-			  } else {
-				tr[i].style.display = "none";
-			  }
-
+			txtValue = Number(td.textContent || td.innerText);
+			BHKValue = td2.textContent || td2.innerText
+				if ((txtValue >= min) && (txtValue <= max) && cbFilter.includes(BHKValue)) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
 			}
 		}
-
 	}
 	</script>
-<script>
+
+    <script>
     //   Скрипт сортировки по возрастанию при нажатии на заголовок
         type="text/javascript">
 $(document).ready(function(){
@@ -182,7 +193,7 @@ $(document).ready(function(){
                 $('#tbody tr  ').each(function(){
                      var found = 'false';
                      $(this).each(function(){
-                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >1)
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >-1)
                           {
                                found = 'true';
                           }
@@ -199,41 +210,7 @@ $(document).ready(function(){
            }
       });
  </script>
-
-<script>
-//Range Rent херово работает
-$('#employee_table').dataTable({
-       searching: true,
-       "paging":false,info:false
-});
-    /* Custom filtering function which will search data in column four between two values */
-$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-    var min = parseInt($('#min').val());
-    var max = parseInt($('#max').val());
-    var rent = parseFloat(data[3]) || 0; // use data for the age column
-
-    if (
-        (isNaN(min) && isNaN(max)) ||
-        (isNaN(min) && rent <= max) ||
-        (min <= rent && isNaN(max)) ||
-        (min <= rent && rent <= max)
-    ) {
-        return true;
-    }
-    return false;
-});
-
-$(document).ready(function () {
-    var table = $('#employee_table' ).DataTable();
-
-    // Event listener to the two range filtering inputs to redraw on input
-    $('#min, #max').keyup(function () {
-        table.draw();
-    });
-});
-</script>
-	
-
+        
 
 	</div>
 </body>

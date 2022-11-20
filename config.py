@@ -5,3 +5,4 @@ import os
 """
 
 DATABASE = 'sqlite:///DB.db'
+DATASOURCE = "House_Rent.csv"
