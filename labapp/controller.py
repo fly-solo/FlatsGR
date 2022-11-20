@@ -27,7 +27,6 @@ navmenu = [
 # Получаем список обработанных файлов
 def get_source_files_list():
     db_connector = SQLStoreConnectorFactory().get_connector(DATABASE)  # получаем объект соединения
-    insert_processed_data_in_DB()
     result = select_all_from_source_files(db_connector)  # получаем список всех обработанных файлов
     # Завершаем работу с БД
     db_connector.close()

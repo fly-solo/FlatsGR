@@ -31,7 +31,7 @@ def run_processor(proc: DataProcessor): # -> DataFrame:
     #proc.print_result()
     # list_result = [proc.result_country, proc.result_year, proc.result_age]
 
-def insert_processed_data_in_DB():
+def insert_processed_data_in_DB(DATASOURCE: str):
     proc = init_processor(DATASOURCE)
     if proc is not None:
         run_processor(proc)
@@ -40,7 +40,6 @@ def insert_processed_data_in_DB():
             insert_rows_into_flats_for_sale(db_connector, proc.result)
             # Завершаем работу с БД
             db_connector.close()
-            os.remove(DATASOURCE)
     else:
         pass
 
