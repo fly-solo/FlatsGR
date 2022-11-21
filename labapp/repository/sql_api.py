@@ -13,7 +13,7 @@ from datetime import datetime
 # Вывод списка обработанных файлов с сортировкой по дате
 def select_all_from_source_files(connector: StoreConnector):
     connector.start_transaction()  # начинаем выполнение запросов
-    query = f'SELECT id, Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City, Furnishing, Point_of_Contact FROM flats_for_sale LIMIT 2000'
+    query = f'SELECT * FROM flats_for_sale LIMIT 2000'
     result = connector.execute(query).fetchall()
     connector.end_transaction()  # завершаем выполнение запросов
     return result
@@ -27,9 +27,8 @@ def insert_rows_into_flats_for_sale(connector: StoreConnector, df: DataFrame):
     row_flats = df.to_dict('records')
     for row in row_flats:
         connector.execute(f'INSERT INTO flats_for_sale (Posted_On, BHK, Rent, Size_, Floor_, Area_Locality, City,'
-                          f' Furnishing, Tenant_Preferred, Bathroom, Point_of_Contact) VALUES (\'{row["Posted_On"]}\', '
+                          f' Furnishing, Point_of_Contact) VALUES (\'{row["Posted_On"]}\', '
                           f'\'{row["BHK"]}\', \'{row["Rent"]}\', \'{row["Size_"]}\','
                           f'\'{row["Floor_"]}\', \'{row["Area_Locality"]}\', \'{row["City"]}\', '
-                          f'\'{"Furnishing"}\', \'{row["Tenant_Preferred"]}\', \'{row["Bathroom"]}\''
-                          f', \'{row["Point_of_Contact"]}\')')
+                          f'\'{"Furnishing"}\', \'{row["Point_of_Contact"]}\')')
     connector.end_transaction()

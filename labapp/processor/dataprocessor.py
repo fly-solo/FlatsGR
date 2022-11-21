@@ -40,6 +40,8 @@ class DataProcessor(ABC):
         т.к. сортировку можно сделать при выполнении SQL-запроса типа SELECT ... ORDER BY...
     """
     def sort_data_by_col(self, df, colname, asc) -> pandas.DataFrame:
+            del df['Tenant_Preferred']
+            del df['Bathroom']
             return df.sort_values(by=colname, ascending=asc)
 
     # Абстрактный метод для вывоа результата на экран
